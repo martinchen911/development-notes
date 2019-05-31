@@ -2,7 +2,7 @@
 
 ### 1.1	Spring 的整体架构
 
-![spring 整体架构图](./images/spring 整体架构图.png)
+![spring 整体架构图](./images/spring整体架构图.png)
 
 
 
