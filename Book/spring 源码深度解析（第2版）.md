@@ -1,4 +1,4 @@
-# 第 1 章	Spring 整体架构及环境搭建
+# 第一章	Spring 整体架构及环境搭建
 
 ### 1.1	Spring 的整体架构
 
@@ -6,7 +6,7 @@
 
 
 
-# 第 2 章	容器的基本实现
+# 第二章	容器的基本实现
 
 ### 2.2	功能分析
 
@@ -91,10 +91,57 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 
 **根据 this .reader. loadBeanDefinitions(resource) 梳理主要流程：**
 
+```java
+public int loadBeanDefinitions(EncodedResource encodedResource) throws BeanDefinitionStoreException {
+        Assert.notNull(encodedResource, "EncodedResource must not be null");
+        if (this.logger.isInfoEnabled()) {
+            this.logger.info("Loading XML bean definitions from " + encodedResource);
+        }
+		// 通过属性来记录已经加载的资源
+        Set<EncodedResource> currentResources = (Set)this.resourcesCurrentlyBeingLoaded.get();
+        if (currentResources == null) {
+            currentResources = new HashSet(4);
+            this.resourcesCurrentlyBeingLoaded.set(currentResources);
+        }
+
+        if (!((Set)currentResources).add(encodedResource)) {
+            throw new BeanDefinitionStoreException("Detected cyclic loading of " + encodedResource + " - check your import definitions!");
+        } else {
+            int var5;
+            try {
+          // 从 encodeResource 中获取已封装得 Resource 对象并再次从 Resource 中获取 inputStram
+                InputStream inputStream = encodedResource.getResource().getInputStream();
+
+                try {
+                    // inputSource 并不源于 Spring，全路径 org.xml.sax.InputStram
+                    InputSource inputSource = new InputSource(inputStream);
+                    if (encodedResource.getEncoding() != null) {
+                        inputSource.setEncoding(encodedResource.getEncoding());
+                    }
+					// 真正核心逻辑部分 doLoadBeanDefinitions() 
+                    var5 = this.doLoadBeanDefinitions(inputSource, encodedResource.getResource());
+                } finally {
+                    inputStream.close();
+                }
+            } catch (IOException var15) {
+                throw new BeanDefinitionStoreException("IOException parsing XML document from " + encodedResource.getResource(), var15);
+            } finally {
+                ((Set)currentResources).remove(encodedResource);
+                if (((Set)currentResources).isEmpty()) {
+                    this.resourcesCurrentlyBeingLoaded.remove();
+                }
+
+            }
+
+            return var5;
+        }
+    }
+```
+
+
+
 * **封装资源文件。**当进入 XrnlBeanDefinitionReader 后首先对参数 Resource 使用EncodedResource 类进行封装。
-
 * **获取输入流。**从 Resource 中获取对应的 InputStrearn 并构造 lnputSource。
-
 * **通过构造的 InputSource 实例和 Resource 实例继续调用函数 doLoadBeanDefinitions。**
 
 **doLoadBeanDefinitions 函数主要干了三件事情：**
@@ -105,5 +152,13 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 
 
 
-### 2.6	获取 XML 的验证方式
+### 2.6.1	获取 XML 的验证方式
 
+- DTD ( Document Type Definition ）即文挡类型定义，是 XML 约束模式语言，是 XML 文件的验证机制，属于 XML 文件组成的一部分。
+- XSD ( XML Schemas Definition XML Schema）， 描述了 XML 文档的结构。
+
+### 2.7	获取 Document
+
+经过了验证模式准备的步骤就可以进行 Document 加载了，同样 Xm!BeanFactoryReader
+对于文档读取并没有亲力亲为，而是委托给了 DocumentLo der 去执行， 这里的 Docw11 oad
+个接口，而 正调用的 DefaultDocumentLoader ，解析代码如下：
