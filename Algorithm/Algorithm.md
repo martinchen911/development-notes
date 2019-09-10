@@ -282,7 +282,29 @@ __算法（Algorithm）是指解题方案的准确而完整的描述，算法代
 ### 3.3、二分查找
 
 * __要求__：_数组有序_
+
 * __定义__：
+
+* __代码__：
+
+  ```java
+  public static int binarySearch(int[] arr,int left,int right,int value) {
+          if (left > right) return -1;
+  
+          int mid = left+(right - left)/2;
+          System.out.println("mid => "+mid);
+  
+          if (arr[mid] > value) {
+              return binarySearch(arr,left,mid-1,value);
+          } else if (arr[mid] < value){
+              return binarySearch(arr,mid+1,right,value);
+          } else {
+              return mid;
+          }
+      }
+  ```
+
+  
 
 ### 3.4、插值查找
 
