@@ -63,6 +63,8 @@ __算法（Algorithm）是指解题方案的准确而完整的描述，算法代
 
 
 
+
+
 ## 二、排序
 
 ### 2.1、概述：
@@ -261,6 +263,58 @@ __算法（Algorithm）是指解题方案的准确而完整的描述，算法代
     }
 ```
 
+### 2.10、堆排序
+
+* __基本思想：__
+  1. 将待排序序列构造成一个大顶堆
+  2. 此时，整个序列的最大值就是堆顶的根节点。
+  3. 将其与末尾元素进行交换，此时末尾就为最大值。
+  4. 然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次小值。如此反复执行，便能得到一个有序序列了。
+  
+* **代码实现**
+
+  ```java
+  	public static void heapSort(int[] arr) {
+          int temp = 0;
+          for (int i = arr.length/2-1; i >= 0; i--) {
+              heap(arr,i,arr.length);
+          }
+  
+          for (int j = arr.length-1; j > 0; j--) {
+              temp = arr[j];
+              arr[j] = arr[0];
+              arr[0] = temp;
+              heap(arr,0,j);
+          }
+      }
+  
+      /**
+       *  调整该节点子树为大顶堆
+       * @param arr 待排序数组
+       * @param i 非叶子节点
+       * @param len  调整的长度
+       */
+      public static void heap(int[] arr,int i,int len) {
+          int temp = arr[i];
+          for (int j = i * 2 + 1; j < len; j = j*2+1) {
+              if (j + 1 < len && arr[j] < arr[j+1]) {
+                  j++;
+              }
+              if (temp < arr[j]) {
+                  arr[i] = arr[j];
+                  i = j;
+              } else {
+                  break;
+              }
+          }
+          arr[i] = temp;
+      }
+  ```
+
+
+
+
+
 
 
 
@@ -276,28 +330,25 @@ __算法（Algorithm）是指解题方案的准确而完整的描述，算法代
 
 ### 3.2、顺序查找
 
-* __要求__：_无_
-* __定义__：_逐一比对，相等则返回_
+* **特征**：_逐一比对，相等则返回_
 
 ### 3.3、二分查找
 
-* __要求__：_数组有序_
-
-* __定义__：
+* __特征__：二分查找也称折半查找（Binary Search），要求样本有序
 
 * __代码__：
 
   ```java
-  public static int binarySearch(int[] arr,int left,int right,int value) {
-          if (left > right) return -1;
+  public static int binarySearch(int[] a,int low,int high,int key) {
+          if (low > high) return -1;
+  		
+     		// 二分索引
+          int mid = low+(high - low)/2;
   
-          int mid = left+(right - left)/2;
-          System.out.println("mid => "+mid);
-  
-          if (arr[mid] > value) {
-              return binarySearch(arr,left,mid-1,value);
-          } else if (arr[mid] < value){
-              return binarySearch(arr,mid+1,right,value);
+          if (a[mid] > key) {
+              return binarySearch(a,low,mid-1,key);
+          } else if (a[mid] < key){
+              return binarySearch(a,mid+1,high,key);
           } else {
               return mid;
           }
@@ -308,7 +359,22 @@ __算法（Algorithm）是指解题方案的准确而完整的描述，算法代
 
 ### 3.4、插值查找
 
+* __特征__：类似于二分查找，不同的是插值查找每次从**自适应mid**处开始查找
 
+* __公式__：
+  $$
+  mid = low + \frac{key-a[low]}{a[high]-a[low]} (high-low)
+  $$
 
 ### 3.5、斐波那契查找
+
+- __特征__：是指把一条[线段](https://baike.baidu.com/item/线段/8679802)分割为两部分，使其中一部分与全长之比等于另一部分与这部分之比。取其前三位数字的近似值是[0.618](https://baike.baidu.com/item/0.618)
+
+- __公式__：
+
+  F代表斐波那契数列
+  $$
+  mid=low+F[key-1]-1
+  $$
+  
 
