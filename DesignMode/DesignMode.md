@@ -6,18 +6,17 @@
 
 ### 1.1、简介
 
-> __软件设计模式（Design pattern）__，又称设计模式，是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性、程序的重用性。
+> __软件设计模式（Design pattern）__，又称设计模式，核心思想为：针对接口编程，而不是 针对实现编程，为交互对象间的松耦合设计而努力。
 
 ### 1.2、原则
 
-1. [开闭原则（ocp）]( [https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_1](https://baike.baidu.com/item/软件设计模式/2117635?fromtitle=设计模式&fromid=1212549&fr=aladdin#5_1) )
-2. [里氏替换原则]( [https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_2](https://baike.baidu.com/item/软件设计模式/2117635?fromtitle=设计模式&fromid=1212549&fr=aladdin#5_2) )
-3. [合成复用原则]( [https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_3](https://baike.baidu.com/item/软件设计模式/2117635?fromtitle=设计模式&fromid=1212549&fr=aladdin#5_3) )
-4. [依赖倒转原则]( [https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_4](https://baike.baidu.com/item/软件设计模式/2117635?fromtitle=设计模式&fromid=1212549&fr=aladdin#5_4) )
-5. [接口隔离原则]( [https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_5](https://baike.baidu.com/item/软件设计模式/2117635?fromtitle=设计模式&fromid=1212549&fr=aladdin#5_5) )
-6. [抽象类]( [https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_6](https://baike.baidu.com/item/软件设计模式/2117635?fromtitle=设计模式&fromid=1212549&fr=aladdin#5_6) )
-7. 单一职责原则
-8. 迪米特法则 
+1. [开闭原则（ocp）](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_1)，模块应该对扩展开放，对修改关闭
+2. [里氏替换原则](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_2 )，子类尽量不重写父类的方法，可通过聚合，组合，依赖等方式解决
+3. [合成复用原则](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_3 )，尽量使用合成 / 聚合的方式，而不是继承
+4. [依赖倒转原则](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_4 )，抽象不应依赖细节，细节应该依赖抽象
+5. [接口隔离原则](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_5 )，一个类对另一个类的依赖应该建立在最小的接口上
+6. [抽象类](https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2117635?fromtitle=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&fromid=1212549&fr=aladdin#5_6 )
+8. 迪米特法则 ，避免类中出现**非直接朋友**（非成员变量，方法参数和返回值）关系的耦合
 
 ### 1.3、分类
 
@@ -84,4 +83,32 @@
 * __访问者模式 __(Visitor)，表示一个作用于某对象结构中的各元素的操作。它使你可以在不改变各元素的类的前提下定义作用于这些元素的新操作。
 
 * __层次访问者模式__
+
+
+
+
+
+## 二、创建模式
+
+
+
+
+
+## 三、结构模式
+
+
+
+
+
+## 四、型为模式
+
+
+
+
+
+## 五、相关术语
+
+### 1.1、UML类图
+
+![5-1.1-1](./images/5-1.1-1.jpg)
 
