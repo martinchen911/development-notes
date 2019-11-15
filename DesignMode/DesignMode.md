@@ -348,19 +348,6 @@
   
   ![4-4.2-1](./images/4-4.2-1.jpg)
   
-* **实现**：
-
-  ```java
-  packge command;
-  public class CommandPattern {
-      public static void main(String[] args) {
-          Comand cmd = 
-      }
-  }
-  ```
-
-  
-
 * **优点**：
 
   1. 降低系统的耦合度。命令模式能将调用操作的对象与实现该操作的对象解耦。
