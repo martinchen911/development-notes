@@ -2,7 +2,7 @@ package com.design.behavior.command;
 
 /**
  * 接收者/实现者
- * @Author LENOVO
+ * @Author chen
  * @Date 2019/11/15
  */
 public class Receiver {

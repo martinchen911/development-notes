@@ -3,7 +3,7 @@ package com.design.behavior.command;
 /**
  * 调用者
  *
- * @Author LENOVO
+ * @Author chen
  * @Date 2019/11/15
  */
 public class Invoker {
