@@ -7,15 +7,15 @@ package com.design.create.singleton;
  * @Author chen
  * @Date 2019/11/23
  */
-public class Singleton03 {
+public class Lazy01 {
 
-    private Singleton03() {}
+    private Lazy01() {}
 
-    private static Singleton03 instance;
+    private static Lazy01 instance;
 
-    public static Singleton03 getInstance() {
+    public static Lazy01 getInstance() {
         if (null == instance) {
-            instance = new Singleton03();
+            instance = new Lazy01();
         }
         return instance;
     }
