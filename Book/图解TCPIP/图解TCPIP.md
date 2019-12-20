@@ -106,7 +106,7 @@
 
 #### 互联网层（网络层）
 
-> 互联网层使用 IP协议，它相当于 OSI 模型中的第三层网络层。IP 协议基于 IP 地址转发分包数据。
+> 主要作用是实现终端节点之间的通信，是TCP/IP 的心脏，由 IP（Internet Protocol）、 ICMP（Internet Control Message Protocol）、ARP（Address Resolution Protocol）等协议组成。
 
 ![网络层](./images/2-2.3-2.jpg)
 
@@ -241,4 +241,26 @@
 
 
 ### 3.2、以太网
+
+
+
+
+
+
+
+## 第四章    IP 协议
+
+### 4.1、IP 基础知识
+
+> IP 大致分为三大作用模块，IP 寻址、路由、IP 分包与组包。
+
+* IP 地址属于网络层地址  
+
+
+
+### 4.2、全局地址与私有地址
+
+> 全局地址就是公网ip，其它均为私有地址。配合上 NAT（Network Address Translation，网络地址转换）技术解决 IP 地址不足问题
+
+![](./images/4-4.2-1.jpg)
 
