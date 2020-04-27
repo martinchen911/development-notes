@@ -15,8 +15,7 @@ public class Lazy05 {
         private static final Lazy05 INSTANCE = new Lazy05();
     }
 
-    public static synchronized Lazy05 getInstance() {
+    public static Lazy05 getInstance() {
         return SingletonInstance.INSTANCE;
     }
-
 }
