@@ -2,12 +2,15 @@ package com.cf.bio;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.*;
 
 /**
  * bio 同步阻塞网络模型
+ *  -- 客户端 telnet 替代
+ *
  * @Author chen
  * @Date 2019/12/6
  */
@@ -26,16 +29,31 @@ public class BIOServer {
 
         while (true) {
             final Socket socket = sSocket.accept();
-            threadPool.execute(new Runnable() {
-                public void run() {
-                    handler(socket);
-                }
-            });
+            threadPool.execute(() ->handler(socket));
         }
 
     }
 
     public static void handler(Socket socket) {
-
+        byte[] bytes = new byte[1024];
+        // 通过 socket 获取输入流
+        try{
+            InputStream inputStream = socket.getInputStream();
+            // 循环读取
+            for (;;) {
+                int read = inputStream.read(bytes);
+                if (read != -1) {
+                    System.out.println(new String(bytes,0,read));
+                } else break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
