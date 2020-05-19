@@ -1,0 +1,43 @@
+// 版本
+syntax = "proto3";
+// 快速解析
+//option optimize_for = speed;
+// 生成类名
+option java_outer_classname = "com.cf.netty.protobuf2.ResultPOJO";
+
+
+
+
+
+// 使用message 管理 message
+message MyResult {
+    // 枚举
+    enum Type{
+        stuType = 0;
+        teaType = 1;
+    }
+
+    Type type = 1;
+
+    // 二选一
+    oneof body {
+        Student student = 2;
+        Teacher teacher = 3;
+    }
+
+}
+
+
+/*
+    类型 字段名 = 序号
+*/
+message Student {
+    int32 id = 1;
+    string name = 2;
+}
+
+message Teacher {
+    int32 id = 1;
+    string name = 2;
+    string subject =3;
+}

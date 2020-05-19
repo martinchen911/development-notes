@@ -1,0 +1,16 @@
+// 版本
+syntax = "proto3";
+// 生成类名
+option java_outer_classname = "StudentPOJO";
+
+
+
+
+
+/*
+    类型 字段名 = 序号
+*/
+message Student {
+    int32 id = 1;
+    string name = 2;
+}
