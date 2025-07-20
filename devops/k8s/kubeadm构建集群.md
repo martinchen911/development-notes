@@ -1,3 +1,5 @@
+> 官方文档：[安装 kubeadm | Kubernetes](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+
 ## 一、基础环境准备（所有节点执行）
 
 ### 禁用内存交换
